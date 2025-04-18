@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="@{/}" th:object="${loginAdminForm}" method="post">
+    <table>
+        <tr>
+            <td>Admin Id:</td>
+            <td><input type="number" th:field="*{id}"/></td>
+            <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{password}"/></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/createAdmin}" class="btn">Create admin</a>
+</body>
+</html>

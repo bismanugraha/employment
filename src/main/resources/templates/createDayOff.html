@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="@{/createDayOff}" th:object="${createDayOffForm}" method="post">
+    <table>
+        <tr>
+            <td>Employee Id:</td>
+            <td><input type="number" th:field="*{employeeId}"/></td>
+            <td th:if="${#fields.hasErrors('employeeId')}" th:errors="*{employeeId}">Employee Id Error</td>
+        </tr>
+        <tr>
+            <td>Start Date:</td>
+            <td><input type="date" th:field="*{startDate}"/></td>
+            <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Start Date Error</td>
+        </tr>
+        <tr>
+            <td>End Date:</td>
+            <td><input type="date" th:field="*{endDate}"/></td>
+            <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">End Date Error</td>
+        </tr>
+        <tr>
+            <td>Reason:</td>
+            <td><input type="text" th:field="*{reason}"/></td>
+            <td th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">Reason Error</td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/employeeList}" class="btn">Back to List</a>
+</body>
+</html>

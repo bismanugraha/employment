@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+</head>
+<body>
+<h1>Employee List</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Gender</th>
+        <th>Day Offs</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employeeList}">
+        <td th:text="${employee.id}">0</td>
+        <td th:text="${employee.name}">Anonymous</td>
+        <td th:text="${employee.surname}">Anonymous</td>
+        <td th:text="${employee.email}">Anonymous</td>
+        <td th:text="${employee.phonenumber}">Anonymous</td>
+        <td th:text="${employee.address}">Anonymous</td>
+        <td th:text="${employee.gender}">Anonymous</td>
+        <td>
+            <ul th:each="dayoff : ${employee.dayOffs}">
+                <li th:text="${#dates.format(dayoff.startdate, 'dd MMM yyyy')} + ' - ' + ${#dates.format(dayoff.enddate, 'dd MMM yyyy')}"></li>
+            </ul>
+        </td>
+        <td>
+            <a th:href="@{'/editEmployee/' + ${employee.id}}">Update</a>
+
+            <form th:action="@{'/deleteEmployee/' + ${employee.id}}" method="post">
+                <input type="submit" value="Delete" onclick="return confirm('Delete this employee?');" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{'/createEmployee'}">Add Employee</a>
+<a th:href="@{'/createDayOff'}">Add Day Off</a>
+</body>
+</html>
